@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="ar">
+
+<head>
+  {% load static %}
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,900&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static '/images/favicon.png' %}">
+  <link rel="stylesheet" href="{% static '/fonts/icomoon/style.css' %}">
+
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
+
+  <!-- Style -->
+  <link rel="stylesheet" href="{% static '/css/style.css' %}">
+
+  <title>Try Ask Loustad</title>
+</head>
+
+<body>
+
+
+  <div class="content">
+
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-10">
+
+
+          <div class="row justify-content-center">
+            <div class="col-md-6">
+
+              <h3 class="heading mb-4">Let's try Ask Loustad</h3>
+              <p class="para">NOTE: This is just a Demo of "Ask Loustad" Feature</p>
+
+              <p><img src="{% static '/images/ask.jpg' %}" alt="Image" class="img-fluid"></p>
+
+              
+            </div>
+           
+            <div class="col-md-6">
+              
+              <form class="mb-5" method="post" id="contactForm" name="contactForm">
+                {% csrf_token %}
+
+                {% for field in form %}
+                <div class="form-group row">
+                  <label class="col-2 col-form-label" style="background-color: aliceblue;">
+
+                    {{ field.label }}
+
+                  </label>
+                  <div class="col-10">
+                    {{ field }}
+                  </div>
+                </div>
+                {% endfor %}
+
+
+
+
+                <div class="row">
+                  <div class="col-12">
+                    <input type="submit" value="Ask" class="btn btn-primary rounded-0 py-2 px-4">
+                    <button type="reset" style="float: right;" onClick="changeToRTL();">RTL/LTR</button>
+                  </div>
+                </div>                
+              </form>
+
+              
+              <br><br>
+              
+              {% for message in messages %}
+                  <!-- <p id="msg" dir="rtl" style="color:black;background-color: lightgreen; text-align:right;">{{message|safe}}</p> -->
+                  <p id="msg" style="color:black;background-color: lightgreen;">{{message|safe}}</p>
+              {%endfor%}
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+  <script src="{% static '/js/jquery-3.3.1.min.js' %}"></script>
+  <script src="{% static '/js/popper.min.js' %}"></script>
+  <script src="{% static '/js/bootstrap.min.js' %}"></script>
+  <script src="{% static '/js/jquery.validate.min.js' %}"></script>
+  <!-- <script src="{% static '/js/main.js' %}"></script> -->
+
+  <script text="script">
+
+    function changeToRTL() {
+      if (document.getElementById("msg").style.textAlign == "right"){
+        document.getElementById("msg").style.textAlign = "left";
+        document.getElementById("msg").setAttribute("dir", "ltr");
+      }else {
+        document.getElementById("msg").style.textAlign = "right";
+        document.getElementById("msg").setAttribute("dir", "rtl");
+      }
+
+      
+      
+    }
+    
+    
+  </script>
+
+</body>
+
+</html>
